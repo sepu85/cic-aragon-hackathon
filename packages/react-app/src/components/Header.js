@@ -7,8 +7,8 @@ export default function Header(props) {
       window.open("https://github.com/austintgriffith/scaffold-eth");
     }}>
       <PageHeader
-        title="🏗 scaffold-eth"
-        subTitle="forkable Ethereum dev stack focused on fast product iteration"
+        title="CIC Social Backing"
+        subTitle="Contribute to your community"
         style={{cursor:'pointer'}}
       />
     </div>

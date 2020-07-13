@@ -77,9 +77,10 @@ export default function Account(props) {
     )
   }
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     if (web3Modal.cachedProvider) {
-      loadWeb3Modal()
+      const fetchModel = async () => loadWeb3Modal()
+      fetchModel()
     }
   }, []);
 

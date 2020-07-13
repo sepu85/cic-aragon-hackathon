@@ -1,3 +1,30 @@
 .App {
   text-align: center;
 }
+
+.onboardButton {
+  flex-grow: 1;
+  background: #5C39E6;
+  color: white;
+  white-space: normal;
+  vertical-align: middle;
+  width: 20vw;
+  height: 20vh;
+  font-size: calc(0.9vw + 0.9vh);
+}
+
+.onboardButton + .onboardButton {
+  margin-left: 2%;
+}
+
+.onboardFooter {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-around;
+  width: 80%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 4%;
+}

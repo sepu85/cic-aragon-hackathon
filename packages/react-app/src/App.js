@@ -5,8 +5,9 @@ import "./App.css";
 import { Row, Col } from 'antd';
 import { useExchangePrice, useGasPrice } from "./hooks"
 import { Header, Account, Provider, Faucet, Ramp } from "./components"
+import OnboardForm from './components/OnboardForm';
 
-import SmartContractWallet from './SmartContractWallet.js'
+// import SmartContractWallet from './SmartContractWallet.js'
 
 const mainnetProvider = new ethers.providers.InfuraProvider("mainnet","2717afb6bf164045b5d5468031b93f87")
 const localProvider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_PROVIDER?process.env.REACT_APP_PROVIDER:"http://localhost:8545")
@@ -32,7 +33,8 @@ function App() {
           price={price}
         />
       </div>
-      <div style={{padding:40,textAlign: "left"}}>
+      <OnboardForm />
+      {/* <div style={{padding:40,textAlign: "left"}}>
         <SmartContractWallet
           address={address}
           injectedProvider={injectedProvider}
@@ -41,8 +43,8 @@ function App() {
           price={price}
           gasPrice={gasPrice}
         />
-      </div>
-      <div style={{position:'fixed',textAlign:'right',right:0,bottom:20,padding:10}}>
+      </div> */}
+      {/* <div style={{position:'fixed',textAlign:'right',right:0,bottom:20,padding:10}}>
         <Row align="middle" gutter={4}>
           <Col span={10}>
             <Provider name={"mainnet"} provider={mainnetProvider} />
@@ -54,8 +56,8 @@ function App() {
             <Provider name={"injected"} provider={injectedProvider} />
           </Col>
         </Row>
-      </div>
-      <div style={{position:'fixed',textAlign:'left',left:0,bottom:20,padding:10}}>
+      </div> */}
+      {/* <div style={{position:'fixed',textAlign:'left',left:0,bottom:20,padding:10}}>
         <Row align="middle" gutter={4}>
           <Col span={9}>
             <Ramp
@@ -72,7 +74,7 @@ function App() {
         </Row>
 
 
-      </div>
+      </div> */}
 
     </div>
   );
