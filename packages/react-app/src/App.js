@@ -5,23 +5,31 @@ import "./App.css";
 import { Row, Col } from 'antd';
 import { useExchangePrice, useGasPrice } from "./hooks"
 import { Header, Account, Provider, Faucet, Ramp } from "./components"
-import OnboardForm from './components/OnboardForm';
+import  OnboardForm from './components/OnboardForm'
+import RequestForm from "./components/RequestForm";
 
 // import SmartContractWallet from './SmartContractWallet.js'
 
 const mainnetProvider = new ethers.providers.InfuraProvider("mainnet","2717afb6bf164045b5d5468031b93f87")
 const localProvider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_PROVIDER?process.env.REACT_APP_PROVIDER:"http://localhost:8545")
 
+
+export const NavEnums = {
+  HOME: 0,
+  REQUEST: 1
+}
+
 function App() {
 
   const [address, setAddress] = useState();
   const [injectedProvider, setInjectedProvider] = useState();
+  const [currentStep, setCurrentStep] = useState(0);
   const price = useExchangePrice(mainnetProvider)
   const gasPrice = useGasPrice("fast")
 
   return (
     <div className="App">
-      <Header />
+      <Header setCurrentStep={(val) => setCurrentStep(val)} />
       <div style={{position:'fixed',textAlign:'right',right:0,top:0,padding:10}}>
         <Account
           address={address}
@@ -33,7 +41,8 @@ function App() {
           price={price}
         />
       </div>
-      <OnboardForm />
+      <OnboardForm currentStep={currentStep} setCurrentStep={(val) => setCurrentStep(val)}/>
+      <RequestForm currentStep={currentStep} />
       {/* <div style={{padding:40,textAlign: "left"}}>
         <SmartContractWallet
           address={address}
