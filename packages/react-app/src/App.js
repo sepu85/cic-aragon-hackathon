@@ -3,10 +3,16 @@ import 'antd/dist/antd.css';
 import { ethers } from "ethers";
 import "./App.css";
 import { Row, Col } from 'antd';
-import { useExchangePrice, useGasPrice } from "./hooks"
-import { Header, Account, Provider, Faucet, Ramp } from "./components"
-import  OnboardForm from './components/OnboardForm'
+import { useExchangePrice, useGasPrice } from "./hooks";
+import { Header, Account, Provider, Faucet, Ramp } from "./components";
+import  OnboardForm from './components/OnboardForm';
 import RequestForm from "./components/RequestForm";
+import CommitForm from "./components/CommitForm";
+import {
+  useApps,
+  useOrganization,
+  usePermissions,
+} from '@aragon/connect-react'
 
 // import SmartContractWallet from './SmartContractWallet.js'
 
@@ -16,7 +22,8 @@ const localProvider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP
 
 export const NavEnums = {
   HOME: 0,
-  REQUEST: 1
+  REQUEST: 1,
+  COMMIT: 2
 }
 
 function App() {
@@ -42,7 +49,8 @@ function App() {
         />
       </div>
       <OnboardForm currentStep={currentStep} setCurrentStep={(val) => setCurrentStep(val)}/>
-      <RequestForm currentStep={currentStep} />
+      <RequestForm currentStep={currentStep} address={address} />
+      <CommitForm currentStep={currentStep}  />
       {/* <div style={{padding:40,textAlign: "left"}}>
         <SmartContractWallet
           address={address}

@@ -23,6 +23,16 @@
   margin-left: 2%;
 }
 
+.onboardTitle {
+  height: 20%;
+  padding-top: 50px;
+}
+
+.onboardBody {
+  height: 20em;
+  align-items: center
+}
+
 .onboardFooter {
   display: flex; 
   flex-direction: row; 

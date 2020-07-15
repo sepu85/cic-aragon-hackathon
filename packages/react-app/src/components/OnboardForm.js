@@ -26,10 +26,10 @@ export default function OnboardForm(props) {
     if (props.currentStep !== NavEnums.HOME ) return null
     return (
             <div className="onboardContainer">
-                <div style={{height: "20%", paddingTop: "50px"}}><h1>{title}</h1></div>
-                <div style={{height: "20em", alignItems: "center"}}>{body}</div>
+                <div className="onboardTitle"><h1>{title}</h1></div>
+                <div className="onboardBody">{body}</div>
                 <div className="onboardFooter">
-                    <Button className="onboardButton" >{commitButton.content} </Button>
+                    <Button className="onboardButton" onClick={() => props.setCurrentStep(NavEnums.COMMIT)} >{commitButton.content} </Button>
                     <Button className="onboardButton" onClick={() => props.setCurrentStep(NavEnums.REQUEST)}>{requestButton.content}</Button>
                 </div>
             </div>
