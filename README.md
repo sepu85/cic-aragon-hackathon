@@ -1,4 +1,13 @@
 
+This is a Aragon DAO hackathon project for Community Inclusion Currencies.
+
+It is forked from Austin Griffith's scaffold-eth. See below for setup instructions.
+
+The Aragon DAO org address needs to be set as an env variable 'ORG_ADDRESS' or paste it into index.js  
+
+
+---
+
 # 🏗 scaffold-eth
 
 > TL;DR: **fork this repo** for an Ethereum dev stack focused on *fast product iteration*

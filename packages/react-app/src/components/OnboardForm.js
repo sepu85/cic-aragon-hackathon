@@ -29,8 +29,8 @@ export default function OnboardForm(props) {
                 <div className="onboardTitle"><h1>{title}</h1></div>
                 <div className="onboardBody">{body}</div>
                 <div className="onboardFooter">
-                    <Button className="onboardButton" onClick={() => props.setCurrentStep(NavEnums.COMMIT)} >{commitButton.content} </Button>
-                    <Button className="onboardButton" onClick={() => props.setCurrentStep(NavEnums.REQUEST)}>{requestButton.content}</Button>
+                    <Button type="primary" className="onboardButton" onClick={() => props.setCurrentStep(NavEnums.COMMIT)} >{commitButton.content} </Button>
+                    <Button type="primary" className="onboardButton" onClick={() => props.setCurrentStep(NavEnums.REQUEST)}>{requestButton.content}</Button>
                 </div>
             </div>
     )
