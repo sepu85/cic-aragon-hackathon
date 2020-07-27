@@ -12,8 +12,10 @@ import { Connect } from '@aragon/connect-react'
 //   uri: "https://api.thegraph.com/subgraphs/name/graphprotocol/uniswap",
 // });
 
+export const ORG_ADDRESS = process.env.ORG_ADDRESS || "0xb2a941EbE3B6DEf14132323ce87CC0D32022A77D" //pinapplemango
+// "0xb91d81d5191e6E5869d917FeF264B6b1566713E6" // CIC prototype
 ReactDOM.render(
-  <Connect location="0xb91d81d5191e6E5869d917FeF264B6b1566713E6" connector="thegraph" options={{ chainId: 4 }}>
+  <Connect location={ORG_ADDRESS} connector="thegraph" options={{ chainId: 4 }}>
     <App />
   </Connect>,
   document.getElementById("root"),

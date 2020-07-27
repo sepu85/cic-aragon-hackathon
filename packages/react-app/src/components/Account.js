@@ -8,7 +8,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { Button, Typography } from 'antd';
 const { Text } = Typography;
 
-const INFURA_ID = ""  // MY INFURA_ID, SWAP IN YOURS!
+const INFURA_ID = "https://rinkeby.infura.io/v3/007d13c1500a4fd4b3087a27d016ea26"  // MY INFURA_ID, SWAP IN YOURS!
 
 const web3Modal = new Web3Modal({
   //network: "mainnet", // optional

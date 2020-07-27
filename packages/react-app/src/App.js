@@ -49,50 +49,8 @@ function App() {
         />
       </div>
       <OnboardForm currentStep={currentStep} setCurrentStep={(val) => setCurrentStep(val)}/>
-      <RequestForm currentStep={currentStep} address={address} />
+      <RequestForm currentStep={currentStep} address={address} injectedProvider={injectedProvider}/>
       <CommitForm currentStep={currentStep}  />
-      {/* <div style={{padding:40,textAlign: "left"}}>
-        <SmartContractWallet
-          address={address}
-          injectedProvider={injectedProvider}
-          localProvider={localProvider}
-          ensProvider={mainnetProvider}
-          price={price}
-          gasPrice={gasPrice}
-        />
-      </div> */}
-      {/* <div style={{position:'fixed',textAlign:'right',right:0,bottom:20,padding:10}}>
-        <Row align="middle" gutter={4}>
-          <Col span={10}>
-            <Provider name={"mainnet"} provider={mainnetProvider} />
-          </Col>
-          <Col span={6}>
-            <Provider name={"local"} provider={localProvider} />
-          </Col>
-          <Col span={8}>
-            <Provider name={"injected"} provider={injectedProvider} />
-          </Col>
-        </Row>
-      </div> */}
-      {/* <div style={{position:'fixed',textAlign:'left',left:0,bottom:20,padding:10}}>
-        <Row align="middle" gutter={4}>
-          <Col span={9}>
-            <Ramp
-              price={price}
-              address={address}
-            />
-          </Col>
-          <Col span={15}>
-            <Faucet
-              localProvider={localProvider}
-              dollarMultiplier={price}
-            />
-          </Col>
-        </Row>
-
-
-      </div> */}
-
     </div>
   );
 }
