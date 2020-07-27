@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@aragon/connect-react": "^0.4.2",
-    "@aragon/connect-thegraph-tokens": "^0.4.2"
+    "@aragon/connect-thegraph-tokens": "^0.4.2",
+    "ipfs-http-client": "^45.0.0"
   }
 }
