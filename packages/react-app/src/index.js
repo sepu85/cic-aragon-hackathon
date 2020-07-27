@@ -6,6 +6,7 @@ import "./index.css";
 import App from "./App";
 import { Connect } from '@aragon/connect-react'
 
+
 // This is the official Uniswap v1 subgraph. You can replace it with your own, if you need to.
 // See all subgraphs: https://thegraph.com/explorer/
 // const client = new ApolloClient({

@@ -14,9 +14,11 @@ import {
   usePermissions,
 } from '@aragon/connect-react'
 
-// import SmartContractWallet from './SmartContractWallet.js'
 
-const mainnetProvider = new ethers.providers.InfuraProvider("mainnet","2717afb6bf164045b5d5468031b93f87")
+
+console.log(`setting infura provider: ${process.env.INFURA_ENDPOINT}`)
+const mainnetProvider = new ethers.providers.InfuraProvider("mainnet",  process.env.INFURA_ENDPOINT)
+const infuraEndpoint = process.env.INFURA_PROVIDER
 const localProvider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_PROVIDER?process.env.REACT_APP_PROVIDER:"http://localhost:8545")
 
 
@@ -45,6 +47,7 @@ function App() {
           injectedProvider={injectedProvider}
           setInjectedProvider={setInjectedProvider}
           mainnetProvider={mainnetProvider}
+          infuraEndpoint={infuraEndpoint}
           price={price}
         />
       </div>
