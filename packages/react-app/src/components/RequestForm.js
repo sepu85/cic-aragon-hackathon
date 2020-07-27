@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { NavEnums } from '../App'
-<<<<<<< HEAD
-import { Button, Input } from 'antd';
-=======
 import { Form, Button, Input } from 'antd';
->>>>>>> createTokenRequest
 import {
     useApps,
     useOrganization,
@@ -24,12 +20,6 @@ export default function RequestForm(props) {
     const [org, orgStatus] = useOrganization()
     const [apps, appsStatus] = useApps()
     const [permissions, permissionsStatus] = usePermissions()
-<<<<<<< HEAD
-    const [cicAmount, setCicAmount] = useState(1)
-    const [depositAmount, setDepositAmonut] = useState(2)
-    const [waitingForRequest, setWaitingForRequest] = useState(false)
-
-=======
     const [requestAmount, setRequestAmount] = useState(1)
     const [depositAmount, setDepositAmonut] = useState(2)
     const [waitingForRequest, setWaitingForRequest] = useState(false)
@@ -45,7 +35,6 @@ export default function RequestForm(props) {
         },
     }
     // This is for getting token info from graph
->>>>>>> createTokenRequest
     // useEffect( () => {
     //     const fetch = async () => {
     //         const tokenManager = new TokenManager(
@@ -65,13 +54,8 @@ export default function RequestForm(props) {
             const intent = org.appIntent(tokenRequest.address, 'createTokenRequest', [
                 DAI_TOKEN_ADDRESS,
                 ethers.utils.parseEther(depositAmount.toString()), // deposit amount
-<<<<<<< HEAD
-                ethers.utils.parseEther(cicAmount.toString()), // return amount
-                "aHashOfSignedContract" 
-=======
                 ethers.utils.parseEther(requestAmount.toString()), // return amount
                 contractHash 
->>>>>>> createTokenRequest
             ])
             const txPath = await intent.paths(props.address)
             return txPath
@@ -85,25 +69,22 @@ export default function RequestForm(props) {
         setWaitingForRequest(true);
         const txPath = await createTokenRequest()
         const signer = props.injectedProvider.getSigner()
-        if (txPath.transactions) {
-            const tx = txPath.transactions[0]
+        
+        try {
+            const tx = txPath.transactions && txPath.transactions[0]
             const { to, data } = tx;
-            try {
-                const contract = new ethers.Contract(DAI_TOKEN_ADDRESS, ecr20Abi, signer);
-                const result = await contract.approve(to, ethers.utils.parseEther('20'), { 
-                    gasLimit: GAS_LIMIT
-                })
-                console.log(result)
-                const txResult = await signer.sendTransaction({data, to, gasLimit: GAS_LIMIT})
-                console.log(txResult)
-            } catch (error) {
-                console.log(`${JSON.stringify(error)}`)
-            } finally {
-                setWaitingForRequest(false);
-            }
-        } else {
-            console.log(`Error: Unable to find any transactions in path.`)
-            setWaitingForRequest(false)
+            const contract = new ethers.Contract(DAI_TOKEN_ADDRESS, ecr20Abi, signer);
+            const result = await contract.approve(to, ethers.utils.parseEther('20'), { 
+                gasLimit: GAS_LIMIT
+            })
+            console.log(result)
+            const txResult = await signer.sendTransaction({data, to, gasLimit: GAS_LIMIT})
+            console.log(txResult)
+        } catch (error) {
+            console.log(`${JSON.stringify(error)}`)
+
+        } finally {
+            setWaitingForRequest(false);
         }
     }
 
@@ -120,14 +101,6 @@ export default function RequestForm(props) {
     return (
         <div className="onboardContainer">
             <div className="onboardTitle">{title}</div>
-<<<<<<< HEAD
-            <div className="onboardBody">
-                {/* <div>Ammount of CIC commitment: <Input onInput={(e) => setCicAmount(e)}></Input></div> */}
-            </div>
-            <div className="onboardFooter">
-                <Button type="primary" className="onboardButton" loading={waitingForRequest || loading} onClick={() => requestMinting()}>{"Request Minting"}</Button>
-            </div>
-=======
             <Form layout={formItemLayout} form={form} >
                     <Form.Item name="contractHash"
                                 label="The hash that points at your contract"
@@ -148,7 +121,6 @@ export default function RequestForm(props) {
                     <Button type="primary" className="onboardButton" loading={waitingForRequest || loading} onClick={() => requestMinting()}>{"Request Minting"}</Button>
                 </div>
             </Form>
->>>>>>> createTokenRequest
         </div>
     )
 }

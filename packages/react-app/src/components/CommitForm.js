@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { NavEnums } from "../App";
-import { Button, Form, Input, Space, Select } from "antd";
+import { Button, Form, Input, Space, Select, Result } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import ipfsHttpClient from "ipfs-http-client";
+import { ethers } from "ethers";
+
 const { Option } = Select;
 
 const url = "https://ipfs.infura.io:5001/api/v0/";
@@ -53,11 +55,25 @@ export default function CommitForm(props) {
     </div>
   );
 
+  const signValues = async values => {
+    const signer = props.injectedProvider.getSigner();
+    const signature = await signer.signMessage(JSON.stringify(values))
+    const payload = {
+      values: values,
+      signature: signature
+    }
+    return payload
+  } 
+
   const [hash, setHash] = useState("");
   const onFinish = values => {
     console.log("Received values of form: ", values);
-    upload(values)
-      .then(({ path }) => setHash(path))
+    signValues(values)
+    .then(payload => {
+      debugger
+      upload(payload)
+        .then(({ path }) => setHash(path))
+      })
       .catch(console.error);
   };
 
@@ -72,7 +88,7 @@ export default function CommitForm(props) {
   );
 
   if (props.currentStep !== NavEnums.COMMIT) return null;
-  if (hash)
+  if (hash) {
     return (
       <div>
         <p>
@@ -84,6 +100,7 @@ export default function CommitForm(props) {
         </p>
       </div>
     );
+  }
   return (
     <div className="onboardContainer">
       <Form onFinish={onFinish} {...layout}>

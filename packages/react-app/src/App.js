@@ -53,7 +53,7 @@ function App() {
       </div>
       <OnboardForm currentStep={currentStep} setCurrentStep={(val) => setCurrentStep(val)}/>
       <RequestForm currentStep={currentStep} address={address} injectedProvider={injectedProvider}/>
-      <CommitForm currentStep={currentStep}  />
+      <CommitForm currentStep={currentStep}  injectedProvider={injectedProvider} />
     </div>
   );
 }
