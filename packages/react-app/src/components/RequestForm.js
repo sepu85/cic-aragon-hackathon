@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { NavEnums } from '../App'
+<<<<<<< HEAD
 import { Button, Input } from 'antd';
+=======
+import { Form, Button, Input } from 'antd';
+>>>>>>> createTokenRequest
 import {
     useApps,
     useOrganization,
@@ -20,10 +24,28 @@ export default function RequestForm(props) {
     const [org, orgStatus] = useOrganization()
     const [apps, appsStatus] = useApps()
     const [permissions, permissionsStatus] = usePermissions()
+<<<<<<< HEAD
     const [cicAmount, setCicAmount] = useState(1)
     const [depositAmount, setDepositAmonut] = useState(2)
     const [waitingForRequest, setWaitingForRequest] = useState(false)
 
+=======
+    const [requestAmount, setRequestAmount] = useState(1)
+    const [depositAmount, setDepositAmonut] = useState(2)
+    const [waitingForRequest, setWaitingForRequest] = useState(false)
+    const [contractHash, setContractHash] = useState()
+    
+    const [form] = Form.useForm();
+    const formItemLayout = {
+        labelCol: {
+          span: 4,
+        },
+        wrapperCol: {
+          span: 14,
+        },
+    }
+    // This is for getting token info from graph
+>>>>>>> createTokenRequest
     // useEffect( () => {
     //     const fetch = async () => {
     //         const tokenManager = new TokenManager(
@@ -43,8 +65,13 @@ export default function RequestForm(props) {
             const intent = org.appIntent(tokenRequest.address, 'createTokenRequest', [
                 DAI_TOKEN_ADDRESS,
                 ethers.utils.parseEther(depositAmount.toString()), // deposit amount
+<<<<<<< HEAD
                 ethers.utils.parseEther(cicAmount.toString()), // return amount
                 "aHashOfSignedContract" 
+=======
+                ethers.utils.parseEther(requestAmount.toString()), // return amount
+                contractHash 
+>>>>>>> createTokenRequest
             ])
             const txPath = await intent.paths(props.address)
             return txPath
@@ -85,18 +112,43 @@ export default function RequestForm(props) {
     const error = orgStatus.error || appsStatus.error || permissionsStatus.error
 
     const title = "Request your CIC issuance"
+    const positiveIntRegex = new RegExp('^0*[1-9]\d*$')
+    const testIntRegex = (input) => positiveIntRegex.test(input)
 
     if (props.currentStep !== NavEnums.REQUEST) return null
     if (error) return <p>Sorry, unable to reach to CIC Aragon org {error.message}</p>
     return (
         <div className="onboardContainer">
             <div className="onboardTitle">{title}</div>
+<<<<<<< HEAD
             <div className="onboardBody">
                 {/* <div>Ammount of CIC commitment: <Input onInput={(e) => setCicAmount(e)}></Input></div> */}
             </div>
             <div className="onboardFooter">
                 <Button type="primary" className="onboardButton" loading={waitingForRequest || loading} onClick={() => requestMinting()}>{"Request Minting"}</Button>
             </div>
+=======
+            <Form layout={formItemLayout} form={form} >
+                    <Form.Item name="contractHash"
+                                label="The hash that points at your contract"
+                                rules={[{ required: true, message: "Please provide the ipfs hash to your contract"}]}>
+                        <Input onChange={(e) => setContractHash(e.target.value)}/>
+                    </Form.Item>
+                    <Form.Item name="requestAmount" 
+                               label="Amount of CIC requested"
+                               rules={[{ required: true, message: "Please input a request amount."}]}>
+                        <Input onChange={(e) => setRequestAmount(e.target.value)}/>
+                    </Form.Item> 
+                    <Form.Item name="depositAmount" 
+                               label="Amount of Deposit"
+                               rules={[{ required: true, message: "Please input a deposit amount." }]}>
+                        <Input onChange={(e) => setDepositAmonut(e.target.value)}/>
+                    </Form.Item>
+                <div className="onboardFooter">
+                    <Button type="primary" className="onboardButton" loading={waitingForRequest || loading} onClick={() => requestMinting()}>{"Request Minting"}</Button>
+                </div>
+            </Form>
+>>>>>>> createTokenRequest
         </div>
     )
 }
