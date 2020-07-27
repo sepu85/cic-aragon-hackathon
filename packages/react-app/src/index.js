@@ -13,7 +13,7 @@ import { Connect } from '@aragon/connect-react'
 // });
 
 ReactDOM.render(
-  <Connect location="0xb91d81d5191e6E5869d917FeF264B6b1566713E6" connector="thegraph" options={{ chainId: 4 }}>
+  <Connect location="0x895a5F3613403F2B61D6d18Fe863C151A8078b8d" connector="thegraph" options={{ chainId: 4 }}>
     <App />
   </Connect>,
   document.getElementById("root"),
