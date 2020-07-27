@@ -32,7 +32,7 @@ function App() {
 
   const [address, setAddress] = useState();
   const [injectedProvider, setInjectedProvider] = useState();
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(NavEnums.COMMIT);
   const price = useExchangePrice(mainnetProvider)
   const gasPrice = useGasPrice("fast")
 
